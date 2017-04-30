@@ -15,7 +15,7 @@ public class TestRunner {
 			System.out.print(t.getTestName() + ".. ");
 			double result = t.test(data);
 			if(t.isSuccess(result)) {
-				System.out.println("PASS");
+				System.out.println("PASS (" + result + ")");
 				successes++;
 			} else {
 				System.out.println("FAIL (" + result + ")");
