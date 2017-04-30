@@ -1,9 +1,6 @@
 package qube.test;
 
-import static org.junit.Assert.*;
-
-import java.security.SecureRandom;
-import java.util.Random;
+// import static org.junit.Assert.*;
 
 import org.apache.commons.math3.random.JDKRandomGenerator;
 import org.apache.commons.math3.random.MersenneTwister;
@@ -19,11 +16,11 @@ public class TestMain {
 
 	@Test
 	public void test() {
-		TestRunner t = new TestRunner(new QTest[] {new FrequencyTest(), new MonteCarloTest(), new CompressionTest()});
-		
-		RandomGenerator[] generators = {new RANDU(), new MersenneTwister(), new JDKRandomGenerator(), new Well512a()};
-		
-		for(RandomGenerator r : generators) {
+		TestRunner t = new TestRunner(new QTest[] { new FrequencyTest(), new MonteCarloTest(), new CompressionTest() });
+
+		RandomGenerator[] generators = { new RANDU(), new MersenneTwister(), new JDKRandomGenerator(), new Well512a() };
+
+		for (RandomGenerator r : generators) {
 			System.out.println("Test results for " + r.getClass().getCanonicalName());
 			byte[] bytes = new byte[200 * 1024 * 1024];
 			r.nextBytes(bytes);

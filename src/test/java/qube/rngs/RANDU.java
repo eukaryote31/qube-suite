@@ -28,29 +28,29 @@ public class RANDU implements RandomGenerator {
 	@Override
 	public int nextInt() {
 		prevval *= 65539;
-		
+
 		return prevval;
 	}
 
 	@Override
 	public int nextInt(int n) {
-	       if (n <= 0)
-	            throw new IllegalArgumentException("n must be positive");
-	
-	        if ((n & -n) == n)  // i.e., n is a power of 2
-	            return (int)((n * (long)nextInt()) >> 31);
-	
-	        int bits, val;
-	        do {
-	            bits = nextInt(31);
-	            val = bits % n;
-	        } while (bits - val + (n-1) < 0);
-	        return val;
+		if (n <= 0)
+			throw new IllegalArgumentException("n must be positive");
+
+		if ((n & -n) == n) // i.e., n is a power of 2
+			return (int) ((n * (long) nextInt()) >> 31);
+
+		int bits, val;
+		do {
+			bits = nextInt(31);
+			val = bits % n;
+		} while (bits - val + (n - 1) < 0);
+		return val;
 	}
 
 	@Override
 	public long nextLong() {
-		return ((long)(nextInt()) << 32) + nextInt();
+		return ((long) (nextInt()) << 32) + nextInt();
 	}
 
 	@Override

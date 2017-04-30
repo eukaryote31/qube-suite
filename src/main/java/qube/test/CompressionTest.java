@@ -12,7 +12,7 @@ public class CompressionTest implements QTest {
 	public double test(byte[] data) {
 		int origlen = data.length;
 		int compresslen = compress(data).length;
-		
+
 		return (double) compresslen / origlen;
 	}
 
@@ -26,16 +26,16 @@ public class CompressionTest implements QTest {
 		return "GZIP Compression";
 	}
 
-    private static byte[] compress(byte[] b) {
-    	try {
-	        ByteArrayOutputStream out = new ByteArrayOutputStream();
-	        GZIPOutputStream gzip = new GZIPOutputStream(out);
-	        gzip.write(b);
-	        gzip.close();
-	        return out.toByteArray();
-    	} catch(IOException e) {
-    		e.printStackTrace();
-    		return null;
-    	}
-    }
+	private static byte[] compress(byte[] b) {
+		try {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			GZIPOutputStream gzip = new GZIPOutputStream(out);
+			gzip.write(b);
+			gzip.close();
+			return out.toByteArray();
+		} catch (IOException e) {
+			// pass the problem up the chain
+			throw new RuntimeException(e);
+		}
+	}
 }
