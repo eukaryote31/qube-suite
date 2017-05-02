@@ -12,8 +12,12 @@ public class MonteCarloTest implements QTest {
 		long outcircle = 0;
 
 		for (int i = 0; i < (vals.length / 2) * 2; i += 2) {
-			double dist = Math.hypot(vals[i], vals[i + 1]);
-			if (dist < 1)
+			
+			// calculate the squared distance (d^2 = a^2 + b^2)
+			// its okay  to use squared distance because sqrt(1) = 1
+			// but its much faster (sqrt is slow)
+			double sqdist = vals[i] * vals[i] + vals[i + 1] * vals[i + 1];
+			if (sqdist < 1)
 				incircle++;
 			else
 				outcircle++;
